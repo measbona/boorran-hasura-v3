@@ -1,0 +1,26 @@
+type Mutation {
+  login(
+    params: LoginInput!
+  ): JWT
+}
+
+input SampleInput {
+  username: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  pin: String!
+}
+
+type SampleOutput {
+  accessToken: String!
+}
+
+type JWT {
+  name: String!
+  email: String!
+  store: String!
+}
+

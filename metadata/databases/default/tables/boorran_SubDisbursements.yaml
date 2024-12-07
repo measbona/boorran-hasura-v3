@@ -1,0 +1,16 @@
+table:
+  name: SubDisbursements
+  schema: boorran
+object_relationships:
+  - name: disbursement
+    using:
+      foreign_key_constraint_on: disbursmentId
+  - name: order
+    using:
+      foreign_key_constraint_on: orderId
+  - name: paymentReceiver
+    using:
+      foreign_key_constraint_on: paymentReceiverId
+  - name: refundBy
+    using:
+      foreign_key_constraint_on: refundById

@@ -1,0 +1,32 @@
+table:
+  name: products
+  schema: inventory
+array_relationships:
+  - name: product_categories
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: product_categories
+          schema: inventory
+  - name: product_option_types
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: product_option_types
+          schema: inventory
+  - name: product_option_values
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: product_option_values
+          schema: inventory
+  - name: product_variants
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: product_variants
+          schema: inventory

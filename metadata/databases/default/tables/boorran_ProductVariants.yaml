@@ -1,0 +1,34 @@
+table:
+  name: ProductVariants
+  schema: boorran
+object_relationships:
+  - name: Product
+    using:
+      foreign_key_constraint_on: productId
+  - name: image
+    using:
+      foreign_key_constraint_on: imageId
+  - name: variant
+    using:
+      manual_configuration:
+        column_mapping:
+          new_itemId: itemId
+        insertion_order: null
+        remote_table:
+          name: OrderItems
+          schema: boorran
+event_triggers:
+  - name: alertProductStock
+    definition:
+      enable_manual: false
+      update:
+        columns:
+          - itemId
+          - productId
+          - title
+          - quantity
+    retry_conf:
+      interval_sec: 5
+      num_retries: 0
+      timeout_sec: 60
+    webhook: https://node.boorran.com/boorran/alert_product_stock

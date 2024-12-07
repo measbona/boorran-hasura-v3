@@ -1,0 +1,24 @@
+table:
+  name: Enums
+  schema: public
+select_permissions:
+  - role: associate
+    permission:
+      columns:
+        - id
+        - type
+        - text
+        - value
+        - metadata
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+        - metadata
+        - text
+        - type
+        - value
+        - id
+      filter: {}
+      allow_aggregations: true

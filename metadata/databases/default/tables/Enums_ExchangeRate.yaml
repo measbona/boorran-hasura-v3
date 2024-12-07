@@ -1,0 +1,3 @@
+table:
+  name: ExchangeRate
+  schema: Enums

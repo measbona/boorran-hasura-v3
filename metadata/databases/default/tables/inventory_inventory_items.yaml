@@ -1,0 +1,10 @@
+table:
+  name: inventory_items
+  schema: inventory
+object_relationships:
+  - name: location
+    using:
+      foreign_key_constraint_on: location_id
+  - name: product_variant
+    using:
+      foreign_key_constraint_on: product_variant_id

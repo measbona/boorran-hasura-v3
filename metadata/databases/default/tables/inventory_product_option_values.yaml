@@ -1,0 +1,10 @@
+table:
+  name: product_option_values
+  schema: inventory
+object_relationships:
+  - name: product
+    using:
+      foreign_key_constraint_on: product_id
+  - name: product_option_type
+    using:
+      foreign_key_constraint_on: product_option_type_id

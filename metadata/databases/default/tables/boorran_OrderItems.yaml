@@ -1,0 +1,16 @@
+table:
+  name: OrderItems
+  schema: boorran
+object_relationships:
+  - name: order
+    using:
+      foreign_key_constraint_on: orderId
+  - name: variant
+    using:
+      manual_configuration:
+        column_mapping:
+          variantId: new_itemId
+        insertion_order: null
+        remote_table:
+          name: ProductVariants
+          schema: boorran

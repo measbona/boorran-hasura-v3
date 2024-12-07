@@ -1,0 +1,13 @@
+table:
+  name: CancelRequests
+  schema: boorran
+object_relationships:
+  - name: approver
+    using:
+      foreign_key_constraint_on: approverId
+  - name: deliverer
+    using:
+      foreign_key_constraint_on: delivererId
+  - name: order
+    using:
+      foreign_key_constraint_on: orderId

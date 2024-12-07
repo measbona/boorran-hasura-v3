@@ -1,0 +1,11 @@
+table:
+  name: locations
+  schema: inventory
+array_relationships:
+  - name: inventory_items
+    using:
+      foreign_key_constraint_on:
+        column: location_id
+        table:
+          name: inventory_items
+          schema: inventory

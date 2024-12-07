@@ -1,0 +1,7 @@
+table:
+  name: Transactions
+  schema: boorran
+object_relationships:
+  - name: requestor
+    using:
+      foreign_key_constraint_on: requestor_id

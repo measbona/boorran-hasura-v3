@@ -1,0 +1,46 @@
+table:
+  name: Customers
+  schema: boorran
+array_relationships:
+  - name: CustomerAddresses
+    using:
+      foreign_key_constraint_on:
+        column: customerId
+        table:
+          name: CustomerAddress
+          schema: boorran
+  - name: orders
+    using:
+      foreign_key_constraint_on:
+        column: customerId
+        table:
+          name: Orders
+          schema: boorran
+remote_relationships:
+  - definition:
+      to_remote_schema:
+        lhs_fields:
+          - id
+        remote_field:
+          customer:
+            arguments:
+              id: $id
+            field:
+              metafield:
+                arguments:
+                  key: name
+        remote_schema: shopify
+    name: name
+event_triggers:
+  - name: onCustomerWrite
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+      update:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: https://node.boorran.com/boorran/customer/on-write

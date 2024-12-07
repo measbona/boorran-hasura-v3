@@ -1,0 +1,11 @@
+table:
+  name: ProductImages
+  schema: boorran
+array_relationships:
+  - name: variants
+    using:
+      foreign_key_constraint_on:
+        column: imageId
+        table:
+          name: ProductVariants
+          schema: boorran

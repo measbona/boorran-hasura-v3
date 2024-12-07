@@ -1,0 +1,35 @@
+table:
+  name: CustomerAddress
+  schema: boorran
+object_relationships:
+  - name: Commune
+    using:
+      foreign_key_constraint_on: communeId
+  - name: Customer
+    using:
+      foreign_key_constraint_on: customerId
+  - name: District
+    using:
+      foreign_key_constraint_on: districtId
+  - name: Province
+    using:
+      foreign_key_constraint_on: provinceId
+array_relationships:
+  - name: Orders
+    using:
+      foreign_key_constraint_on:
+        column: addressId
+        table:
+          name: Orders
+          schema: boorran
+event_triggers:
+  - name: onCustomerAddressDelete
+    definition:
+      delete:
+        columns: '*'
+      enable_manual: false
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: https://node.boorran.com/boorran/customer-address/delete

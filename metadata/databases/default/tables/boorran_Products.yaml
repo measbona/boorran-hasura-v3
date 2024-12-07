@@ -1,0 +1,43 @@
+table:
+  name: Products
+  schema: boorran
+array_relationships:
+  - name: Discounts
+    using:
+      foreign_key_constraint_on:
+        column: productId
+        table:
+          name: Discounts
+          schema: boorran
+  - name: ProductImages
+    using:
+      foreign_key_constraint_on:
+        column: productId
+        table:
+          name: ProductImages
+          schema: boorran
+  - name: ProductVariants
+    using:
+      foreign_key_constraint_on:
+        column: productId
+        table:
+          name: ProductVariants
+          schema: boorran
+remote_relationships:
+  - definition:
+      hasura_fields: []
+      remote_field:
+        products:
+          arguments: {}
+      remote_schema: shopify
+    name: ShopifyProducts
+insert_permissions:
+  - role: auth
+    permission:
+      check: {}
+      columns:
+        - itemId
+        - title
+        - createdAt
+        - updatedAt
+        - id

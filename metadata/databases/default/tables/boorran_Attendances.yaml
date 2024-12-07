@@ -1,0 +1,7 @@
+table:
+  name: Attendances
+  schema: boorran
+object_relationships:
+  - name: staff
+    using:
+      foreign_key_constraint_on: staffId
