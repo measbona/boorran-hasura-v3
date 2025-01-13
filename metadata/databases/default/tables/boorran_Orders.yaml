@@ -2,6 +2,15 @@ table:
   name: Orders
   schema: boorran
 object_relationships:
+  - name: OrderLogs
+    using:
+      manual_configuration:
+        column_mapping:
+          id: orderId
+        insertion_order: null
+        remote_table:
+          name: OrderLogs
+          schema: boorran
   - name: OriginalOrder
     using:
       manual_configuration:
@@ -13,168 +22,110 @@ object_relationships:
           schema: boorran
   - name: PackByUser
     using:
-      foreign_key_constraint_on: packBy
+      manual_configuration:
+        column_mapping:
+          packBy: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
   - name: ReplacementOrder
     using:
-      foreign_key_constraint_on: exchangedOrderId
+      manual_configuration:
+        column_mapping:
+          exchangedOrderId: id
+        insertion_order: null
+        remote_table:
+          name: Orders
+          schema: boorran
   - name: address
     using:
-      foreign_key_constraint_on: addressId
+      manual_configuration:
+        column_mapping:
+          addressId: id
+        insertion_order: null
+        remote_table:
+          name: CustomerAddress
+          schema: boorran
   - name: customer
     using:
-      foreign_key_constraint_on: customerId
+      manual_configuration:
+        column_mapping:
+          customerId: id
+        insertion_order: null
+        remote_table:
+          name: Customers
+          schema: boorran
   - name: deliverer
     using:
-      foreign_key_constraint_on: delivererId
-  - name: paymentReceiver
-    using:
-      foreign_key_constraint_on: paymentReceiverId
-  - name: refundBy
-    using:
-      foreign_key_constraint_on: refundById
-  - name: staff
-    using:
-      foreign_key_constraint_on: staffId
-array_relationships:
-  - name: OrderLogs
-    using:
-      foreign_key_constraint_on:
-        column: orderId
-        table:
-          name: OrderLogs
-          schema: boorran
-  - name: cancelRequests
-    using:
-      foreign_key_constraint_on:
-        column: orderId
-        table:
-          name: CancelRequests
-          schema: boorran
+      manual_configuration:
+        column_mapping:
+          delivererId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
   - name: logs
     using:
-      foreign_key_constraint_on:
-        column: orderId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: orderId
+        insertion_order: null
+        remote_table:
           name: Logs
+          schema: boorran
+  - name: paymentReceiver
+    using:
+      manual_configuration:
+        column_mapping:
+          paymentReceiverId: id
+        insertion_order: null
+        remote_table:
+          name: PaymentMethodRequests
+          schema: boorran
+  - name: refundBy
+    using:
+      manual_configuration:
+        column_mapping:
+          refundById: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
+  - name: staff
+    using:
+      manual_configuration:
+        column_mapping:
+          staffId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
+array_relationships:
+  - name: cancelRequests
+    using:
+      manual_configuration:
+        column_mapping:
+          id: orderId
+        insertion_order: null
+        remote_table:
+          name: CancelRequests
           schema: boorran
   - name: orderItems
     using:
-      foreign_key_constraint_on:
-        column: orderId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: orderId
+        insertion_order: null
+        remote_table:
           name: OrderItems
           schema: boorran
   - name: paymentMethodRequests
     using:
-      foreign_key_constraint_on:
-        column: orderId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: orderId
+        insertion_order: null
+        remote_table:
           name: PaymentMethodRequests
           schema: boorran
-event_triggers:
-  - name: activityLogs
-    definition:
-      enable_manual: false
-      update:
-        columns:
-          - isCollectedByAdmin
-          - boorranDeliveryPrice
-          - boorranGrandTotal
-          - deliveryPrice
-          - discount
-          - grandTotal
-          - itemsPrice
-          - subTotal
-          - taxPrice
-          - chat_url
-          - deliverBy
-          - deliveryDestination
-          - deliveryStatus
-          - note
-          - orderAddress
-          - packStatus
-          - paymentMethod
-          - refundDeliveryToStaff
-          - shopifyOrderId
-          - shopifyOrderNumber
-          - source
-          - status
-          - createdAt
-          - paymentReceivedDate
-          - customerId
-          - delivererId
-          - id
-          - packBy
-          - paymentReceiverId
-          - refundById
-          - staffId
-    retry_conf:
-      interval_sec: 10
-      num_retries: 0
-      timeout_sec: 60
-    webhook_from_env: HASURA_ACTIVITY
-  - name: onOrderAction
-    definition:
-      enable_manual: false
-      insert:
-        columns: '*'
-      update:
-        columns:
-          - discount
-          - deliveryStatus
-          - orderAddress
-    retry_conf:
-      interval_sec: 10
-      num_retries: 3
-      timeout_sec: 60
-    webhook: https://boorran-messenger-bot.herokuapp.com/api/orders
-  - name: onOrderWrite
-    definition:
-      enable_manual: false
-      insert:
-        columns: '*'
-      update:
-        columns:
-          - discount
-          - source
-          - staffId
-          - subTotal
-          - status
-          - deliveryStatus
-          - paymentMethod
-          - deliveryPrice
-          - grandTotal
-          - note
-          - createdAt
-          - orderAddress
-          - deliveryDestination
-          - deliverBy
-          - paymentReceiverId
-          - paymentReceivedDate
-          - isCollectedByAdmin
-          - id
-          - itemsPrice
-          - taxPrice
-          - shopifyOrderId
-          - shopifyOrderNumber
-          - customerId
-          - boorranDeliveryPrice
-          - boorranGrandTotal
-          - refundDeliveryToStaff
-          - delivererId
-          - chat_url
-          - refundById
-          - paymentRequested
-          - refundRequested
-          - packStatus
-          - packBy
-          - addressId
-          - location
-          - deliveryDate
-          - schedule
-          - exchangedOrderId
-    retry_conf:
-      interval_sec: 10
-      num_retries: 0
-      timeout_sec: 60
-    webhook: https://node.boorran.com/boorran/order/on-write

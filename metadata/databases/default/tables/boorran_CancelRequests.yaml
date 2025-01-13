@@ -4,10 +4,28 @@ table:
 object_relationships:
   - name: approver
     using:
-      foreign_key_constraint_on: approverId
+      manual_configuration:
+        column_mapping:
+          approverId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
   - name: deliverer
     using:
-      foreign_key_constraint_on: delivererId
+      manual_configuration:
+        column_mapping:
+          delivererId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
   - name: order
     using:
-      foreign_key_constraint_on: orderId
+      manual_configuration:
+        column_mapping:
+          orderId: id
+        insertion_order: null
+        remote_table:
+          name: Orders
+          schema: boorran

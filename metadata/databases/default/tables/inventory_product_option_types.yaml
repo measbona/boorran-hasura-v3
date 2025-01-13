@@ -4,8 +4,10 @@ table:
 array_relationships:
   - name: product_option_values
     using:
-      foreign_key_constraint_on:
-        column: product_option_type_id
-        table:
+      manual_configuration:
+        column_mapping:
+          id: product_option_type_id
+        insertion_order: null
+        remote_table:
           name: product_option_values
           schema: inventory

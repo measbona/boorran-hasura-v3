@@ -4,23 +4,29 @@ table:
 array_relationships:
   - name: Discounts
     using:
-      foreign_key_constraint_on:
-        column: productId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: productId
+        insertion_order: null
+        remote_table:
           name: Discounts
           schema: boorran
   - name: ProductImages
     using:
-      foreign_key_constraint_on:
-        column: productId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: productId
+        insertion_order: null
+        remote_table:
           name: ProductImages
           schema: boorran
   - name: ProductVariants
     using:
-      foreign_key_constraint_on:
-        column: productId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: productId
+        insertion_order: null
+        remote_table:
           name: ProductVariants
           schema: boorran
 remote_relationships:

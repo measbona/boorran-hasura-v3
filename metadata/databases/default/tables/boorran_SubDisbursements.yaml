@@ -4,13 +4,37 @@ table:
 object_relationships:
   - name: disbursement
     using:
-      foreign_key_constraint_on: disbursmentId
+      manual_configuration:
+        column_mapping:
+          disbursmentId: id
+        insertion_order: null
+        remote_table:
+          name: Disbursements
+          schema: boorran
   - name: order
     using:
-      foreign_key_constraint_on: orderId
+      manual_configuration:
+        column_mapping:
+          shopifyOrderId: shopifyOrderId
+        insertion_order: null
+        remote_table:
+          name: Orders
+          schema: boorran
   - name: paymentReceiver
     using:
-      foreign_key_constraint_on: paymentReceiverId
+      manual_configuration:
+        column_mapping:
+          paymentReceiverId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
   - name: refundBy
     using:
-      foreign_key_constraint_on: refundById
+      manual_configuration:
+        column_mapping:
+          refundById: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public

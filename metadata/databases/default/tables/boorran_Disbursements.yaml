@@ -4,15 +4,29 @@ table:
 object_relationships:
   - name: acceptor
     using:
-      foreign_key_constraint_on: acceptorId
+      manual_configuration:
+        column_mapping:
+          acceptorId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
   - name: requestor
     using:
-      foreign_key_constraint_on: requestorId
+      manual_configuration:
+        column_mapping:
+          requestorId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
 array_relationships:
   - name: subDisbursements
     using:
-      foreign_key_constraint_on:
-        column: disbursmentId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: disbursmentId
+        insertion_order: null
+        remote_table:
           name: SubDisbursements
           schema: boorran

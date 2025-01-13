@@ -4,16 +4,20 @@ table:
 array_relationships:
   - name: CustomerAddresses
     using:
-      foreign_key_constraint_on:
-        column: customerId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: customerId
+        insertion_order: null
+        remote_table:
           name: CustomerAddress
           schema: boorran
   - name: orders
     using:
-      foreign_key_constraint_on:
-        column: customerId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: customerId
+        insertion_order: null
+        remote_table:
           name: Orders
           schema: boorran
 remote_relationships:
@@ -31,16 +35,3 @@ remote_relationships:
                   key: name
         remote_schema: shopify
     name: name
-event_triggers:
-  - name: onCustomerWrite
-    definition:
-      enable_manual: false
-      insert:
-        columns: '*'
-      update:
-        columns: '*'
-    retry_conf:
-      interval_sec: 10
-      num_retries: 0
-      timeout_sec: 60
-    webhook: https://node.boorran.com/boorran/customer/on-write

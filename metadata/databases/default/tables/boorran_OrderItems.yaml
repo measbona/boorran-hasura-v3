@@ -4,12 +4,18 @@ table:
 object_relationships:
   - name: order
     using:
-      foreign_key_constraint_on: orderId
+      manual_configuration:
+        column_mapping:
+          orderId: id
+        insertion_order: null
+        remote_table:
+          name: Orders
+          schema: boorran
   - name: variant
     using:
       manual_configuration:
         column_mapping:
-          variantId: new_itemId
+          variantId: itemId
         insertion_order: null
         remote_table:
           name: ProductVariants

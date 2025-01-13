@@ -4,7 +4,29 @@ table:
 object_relationships:
   - name: category
     using:
-      foreign_key_constraint_on: category_id
+      manual_configuration:
+        column_mapping:
+          category_id: id
+        insertion_order: null
+        remote_table:
+          name: categories
+          schema: inventory
   - name: product
     using:
-      foreign_key_constraint_on: product_id
+      manual_configuration:
+        column_mapping:
+          product_id: id
+        insertion_order: null
+        remote_table:
+          name: products
+          schema: inventory
+array_relationships:
+  - name: product_categories
+    using:
+      manual_configuration:
+        column_mapping:
+          category_id: id
+        insertion_order: null
+        remote_table:
+          name: categories
+          schema: inventory

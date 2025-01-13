@@ -4,8 +4,10 @@ table:
 array_relationships:
   - name: variants
     using:
-      foreign_key_constraint_on:
-        column: imageId
-        table:
+      manual_configuration:
+        column_mapping:
+          productId: productId
+        insertion_order: null
+        remote_table:
           name: ProductVariants
           schema: boorran

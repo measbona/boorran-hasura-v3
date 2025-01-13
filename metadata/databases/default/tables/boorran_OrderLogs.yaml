@@ -4,7 +4,19 @@ table:
 object_relationships:
   - name: Order
     using:
-      foreign_key_constraint_on: orderId
+      manual_configuration:
+        column_mapping:
+          orderId: id
+        insertion_order: null
+        remote_table:
+          name: Orders
+          schema: boorran
   - name: User
     using:
-      foreign_key_constraint_on: staffId
+      manual_configuration:
+        column_mapping:
+          staffId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public

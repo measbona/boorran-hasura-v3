@@ -4,4 +4,10 @@ table:
 object_relationships:
   - name: staff
     using:
-      foreign_key_constraint_on: staffId
+      manual_configuration:
+        column_mapping:
+          staffId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public

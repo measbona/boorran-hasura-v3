@@ -4,7 +4,19 @@ table:
 object_relationships:
   - name: location
     using:
-      foreign_key_constraint_on: location_id
+      manual_configuration:
+        column_mapping:
+          location_id: id
+        insertion_order: null
+        remote_table:
+          name: locations
+          schema: inventory
   - name: product_variant
     using:
-      foreign_key_constraint_on: product_variant_id
+      manual_configuration:
+        column_mapping:
+          product_variant_id: id
+        insertion_order: null
+        remote_table:
+          name: product_variants
+          schema: inventory

@@ -4,18 +4,19 @@ table:
 object_relationships:
   - name: deliverer
     using:
-      foreign_key_constraint_on: delivererId
+      manual_configuration:
+        column_mapping:
+          delivererId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
   - name: order
     using:
-      foreign_key_constraint_on: orderId
-event_triggers:
-  - name: onPaymentRequestCreate
-    definition:
-      enable_manual: false
-      insert:
-        columns: '*'
-    retry_conf:
-      interval_sec: 10
-      num_retries: 0
-      timeout_sec: 60
-    webhook: https://node.boorran.com/boorran/payment-requests/on-create
+      manual_configuration:
+        column_mapping:
+          orderId: id
+        insertion_order: null
+        remote_table:
+          name: Orders
+          schema: boorran

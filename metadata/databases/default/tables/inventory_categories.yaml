@@ -4,19 +4,29 @@ table:
 object_relationships:
   - name: parent
     using:
-      foreign_key_constraint_on: parent_id
+      manual_configuration:
+        column_mapping:
+          parent_id: id
+        insertion_order: null
+        remote_table:
+          name: categories
+          schema: inventory
 array_relationships:
   - name: children
     using:
-      foreign_key_constraint_on:
-        column: parent_id
-        table:
+      manual_configuration:
+        column_mapping:
+          parent_id: id
+        insertion_order: null
+        remote_table:
           name: categories
           schema: inventory
   - name: product_categories
     using:
-      foreign_key_constraint_on:
-        column: category_id
-        table:
+      manual_configuration:
+        column_mapping:
+          id: category_id
+        insertion_order: null
+        remote_table:
           name: product_categories
           schema: inventory

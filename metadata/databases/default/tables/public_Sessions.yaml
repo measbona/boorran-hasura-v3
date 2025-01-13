@@ -1,7 +1,53 @@
 table:
-  name: sessions
+  name: Sessions
   schema: public
 object_relationships:
   - name: user
     using:
-      foreign_key_constraint_on: userId
+      manual_configuration:
+        column_mapping:
+          userId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
+insert_permissions:
+  - role: associate
+    permission:
+      check: {}
+      columns:
+        - id
+        - userId
+        - createdAt
+        - expiredAt
+        - metadata
+  - role: manager
+    permission:
+      check: {}
+      columns:
+        - metadata
+        - createdAt
+        - expiredAt
+        - id
+        - userId
+select_permissions:
+  - role: associate
+    permission:
+      columns:
+        - metadata
+        - createdAt
+        - expiredAt
+        - id
+        - userId
+      filter: {}
+      allow_aggregations: true
+  - role: manager
+    permission:
+      columns:
+        - metadata
+        - createdAt
+        - expiredAt
+        - id
+        - userId
+      filter: {}
+      allow_aggregations: true

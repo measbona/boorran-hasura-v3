@@ -1,14 +1,8 @@
-actions:
-  - name: login
-    definition:
-      kind: synchronous
-      handler: https://hasura.boorran.com/api/actions/login
+actions: []
 custom_types:
   enums: []
   input_objects:
     - name: SampleInput
-    - name: LoginInput
   objects:
     - name: SampleOutput
-    - name: JWT
   scalars: []

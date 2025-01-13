@@ -4,32 +4,47 @@ table:
 object_relationships:
   - name: Commune
     using:
-      foreign_key_constraint_on: communeId
+      manual_configuration:
+        column_mapping:
+          communeId: id
+        insertion_order: null
+        remote_table:
+          name: Communes
+          schema: Enums
   - name: Customer
     using:
-      foreign_key_constraint_on: customerId
+      manual_configuration:
+        column_mapping:
+          customerId: id
+        insertion_order: null
+        remote_table:
+          name: Customers
+          schema: boorran
   - name: District
     using:
-      foreign_key_constraint_on: districtId
+      manual_configuration:
+        column_mapping:
+          districtId: id
+        insertion_order: null
+        remote_table:
+          name: Districts
+          schema: Enums
   - name: Province
     using:
-      foreign_key_constraint_on: provinceId
+      manual_configuration:
+        column_mapping:
+          provinceId: id
+        insertion_order: null
+        remote_table:
+          name: Provinces
+          schema: Enums
 array_relationships:
   - name: Orders
     using:
-      foreign_key_constraint_on:
-        column: addressId
-        table:
+      manual_configuration:
+        column_mapping:
+          customerId: customerId
+        insertion_order: null
+        remote_table:
           name: Orders
           schema: boorran
-event_triggers:
-  - name: onCustomerAddressDelete
-    definition:
-      delete:
-        columns: '*'
-      enable_manual: false
-    retry_conf:
-      interval_sec: 10
-      num_retries: 0
-      timeout_sec: 60
-    webhook: https://node.boorran.com/boorran/customer-address/delete

@@ -4,12 +4,20 @@ table:
 object_relationships:
   - name: User
     using:
-      foreign_key_constraint_on: userId
+      manual_configuration:
+        column_mapping:
+          userId: id
+        insertion_order: null
+        remote_table:
+          name: Users
+          schema: public
 array_relationships:
   - name: Commissions
     using:
-      foreign_key_constraint_on:
-        column: disbursementId
-        table:
+      manual_configuration:
+        column_mapping:
+          id: disbursementId
+        insertion_order: null
+        remote_table:
           name: Commissions
           schema: boorran

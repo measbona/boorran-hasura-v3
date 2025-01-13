@@ -4,8 +4,10 @@ table:
 array_relationships:
   - name: inventory_items
     using:
-      foreign_key_constraint_on:
-        column: location_id
-        table:
+      manual_configuration:
+        column_mapping:
+          id: location_id
+        insertion_order: null
+        remote_table:
           name: inventory_items
           schema: inventory
